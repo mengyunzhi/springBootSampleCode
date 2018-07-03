@@ -25,9 +25,6 @@ public class ViewInit implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        logger.debug("获取当前类所在的包");
-        Package pack = ViewInit.class.getPackage();
-
         logger.debug("扫描当前包下所有的使用了ViewAnnotation注解的类");
         Reflections reflections = new Reflections("com.mengyunzhi.springbootsamplecode.createview.view");
         Set<Class<?>> annotatedClassSet = reflections.getTypesAnnotatedWith(ViewAnnotation.class);
