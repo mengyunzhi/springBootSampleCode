@@ -2,7 +2,6 @@ package com.mengyunzhi.springbootsamplecode.createview.view;
 
 import com.mengyunzhi.springbootsamplecode.createview.annotation.ViewAnnotation;
 import com.mengyunzhi.springbootsamplecode.createview.entity.Teacher;
-import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
