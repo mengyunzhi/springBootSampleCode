@@ -3,6 +3,7 @@ package com.mengyunzhi.springbootsamplecode.multiquery.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface YunzhiService {
      * @return
      * panjie
      */
-    Page<Object> pageByEntity(Object entity, Pageable pageable);
+    Page<?> pageByEntity(JpaSpecificationExecutor jpaSpecificationExecutor,  Object entity, Pageable pageable);
 
     /**
      * 通过传入的实体查询所有数据
@@ -25,5 +26,5 @@ public interface YunzhiService {
      * @return
      * panjie
      */
-    List<Object> findAllByEntity(Object entity);
+    List<?> findAllByEntity(Object entity);
 }

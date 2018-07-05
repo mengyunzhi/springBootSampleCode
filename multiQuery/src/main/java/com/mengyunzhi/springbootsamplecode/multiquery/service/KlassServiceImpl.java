@@ -20,6 +20,9 @@ public class KlassServiceImpl implements KlassService {
         Teacher teacher = teacherService.getOneSavedTeacher();
         Klass klass = new Klass();
         klass.setName(CommonService.getRandomStringByLength(4) + "测试班级名称" + CommonService.getRandomStringByLength(4));
+        klass.setLongTest(1000L);
+        klass.setTotalStudentCount((short) 10);
+        klass.setIntegerTest(100);
         klass.setTeacher(teacher);
         klassRepository.save(klass);
         return klass;

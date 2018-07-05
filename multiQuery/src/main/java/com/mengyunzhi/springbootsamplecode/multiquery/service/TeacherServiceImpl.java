@@ -15,7 +15,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher getOneSavedTeacher() {
         Teacher teacher = new Teacher();
-        teacher.setName(CommonService.getRandomStringByLength(4) + "测试名称" + CommonService.getRandomStringByLength(4));
+        teacher.setName(CommonService.getRandomStringByLength(4) + "测试班级名称" + CommonService.getRandomStringByLength(4));
         teacherRepository.save(teacher);
         return teacher;
     }
