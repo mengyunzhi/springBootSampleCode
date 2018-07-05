@@ -18,7 +18,7 @@ public interface YunzhiService {
      * @return
      * panjie
      */
-    Page<?> pageByEntity(JpaSpecificationExecutor jpaSpecificationExecutor,  Object entity, Pageable pageable);
+    Page<?> page(JpaSpecificationExecutor jpaSpecificationExecutor, Object entity, Pageable pageable);
 
     /**
      * 通过传入的实体查询所有数据
@@ -26,5 +26,5 @@ public interface YunzhiService {
      * @return
      * panjie
      */
-    List<?> findAllByEntity(Object entity);
+    List<?> findAll(JpaSpecificationExecutor jpaSpecificationExecutor, Object entity);
 }

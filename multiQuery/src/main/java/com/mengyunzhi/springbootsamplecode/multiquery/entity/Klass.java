@@ -1,5 +1,7 @@
 package com.mengyunzhi.springbootsamplecode.multiquery.entity;
 
+import com.mengyunzhi.springbootsamplecode.multiquery.annotation.IgnoreQueryParam;
+
 import javax.persistence.*;
 
 /**
@@ -15,8 +17,9 @@ public class Klass extends YunZhiAbstractEntity{
     @ManyToOne
     private Teacher teacher;
 
-    @Transient
-    private Teacher transientTeacher;
+    @ManyToOne
+    @IgnoreQueryParam           // 忽略查询条件
+    private Teacher ignoreTeacher;
 
     public String getName() {
         return name;
@@ -58,11 +61,11 @@ public class Klass extends YunZhiAbstractEntity{
         this.longTest = longTest;
     }
 
-    public Teacher getTransientTeacher() {
-        return transientTeacher;
+    public Teacher getIgnoreTeacher() {
+        return ignoreTeacher;
     }
 
-    public void setTransientTeacher(Teacher transientTeacher) {
-        this.transientTeacher = transientTeacher;
+    public void setIgnoreTeacher(Teacher ignoreTeacher) {
+        this.ignoreTeacher = ignoreTeacher;
     }
 }

@@ -24,6 +24,7 @@ public class KlassServiceImpl implements KlassService {
         klass.setTotalStudentCount((short) 10);
         klass.setIntegerTest(100);
         klass.setTeacher(teacher);
+        klass.setIgnoreTeacher(teacher);
         klassRepository.save(klass);
         return klass;
     }

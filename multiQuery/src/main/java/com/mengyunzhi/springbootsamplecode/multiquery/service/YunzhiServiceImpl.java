@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * 多条件综合查询
  * @author panjie
  */
 @Service
@@ -29,10 +30,17 @@ public class YunzhiServiceImpl implements YunzhiService {
     private static final Logger logger = LoggerFactory.getLogger(YunzhiServiceImpl.class);
 
     @Override
-    public Page<Object> pageByEntity(JpaSpecificationExecutor jpaSpecificationExecutor, Object entity, Pageable pageable) {
+    public Page<Object> page(JpaSpecificationExecutor jpaSpecificationExecutor, Object entity, Pageable pageable) {
         Specification specification = this.getSpecificationByEntity(entity);
         Page<Object> objectPage = jpaSpecificationExecutor.findAll(specification, pageable);
         return objectPage;
+    }
+
+    @Override
+    public List<Object> findAll(JpaSpecificationExecutor jpaSpecificationExecutor, Object entity) {
+        Specification specification = this.getSpecificationByEntity(entity);
+        List<Object> objectList = jpaSpecificationExecutor.findAll(specification);
+        return objectList;
     }
 
     private Specification getSpecificationByEntity(Object entity) {
@@ -86,25 +94,23 @@ public class YunzhiServiceImpl implements YunzhiService {
 
                             } else {
                                 logger.debug("没有@ManyToOne, OneToMany, ManyToMany注解，说明为普通字段, 按value类型，进行综合查询");
-                                logger.debug("初始化两个界限的变量");
+                                // 初始化两个界限的变量
                                 Boolean isBegin = false;
                                 Boolean isEnd = false;
 
+                                // 查找开始与结束的注解
                                 BeginQueryParam beginQueryParam = field.getAnnotation(BeginQueryParam.class);
                                 if (beginQueryParam != null) {
                                     logger.debug("存在@BeginQueryParam注解");
                                     isBegin = true;
-                                    if (!beginQueryParam.name().isEmpty()) {
-                                        name = beginQueryParam.name();
-                                    }
+                                    name = beginQueryParam.name();
                                 } else if (field.getAnnotation(EndQueryParam.class) != null) {
                                     logger.debug("存在@EndQueryParam注解");
                                     isEnd = true;
-                                    EndQueryParam endQueryParam = field.getAnnotation(EndQueryParam.class);
-                                    if (!endQueryParam.name().isEmpty()) {
-                                        name = endQueryParam.name();
-                                    }
+                                    name = field.getAnnotation(EndQueryParam.class).name();
                                 }
+
+                                // 按字段类型进行查询
                                 if (value instanceof String) {
                                     logger.debug("字符串则进行模糊查询");
                                     String stringValue = ((String) value);
@@ -184,10 +190,5 @@ public class YunzhiServiceImpl implements YunzhiService {
         };
 
         return specification;
-    }
-
-    @Override
-    public List<Object> findAllByEntity(Object entity) {
-        return null;
     }
 }
