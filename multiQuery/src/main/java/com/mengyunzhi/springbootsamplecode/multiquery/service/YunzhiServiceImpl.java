@@ -167,7 +167,7 @@ public class YunzhiServiceImpl implements YunzhiService {
                                     // todo: 一对多，多对多查询
                                 }
                             } else {
-                                logger.error("综合查询，暂不支持传入的数据类型", name, field);
+                                logger.error("综合查询暂不支持传入的数据类型", name, field);
                             }
                         }
                     }
