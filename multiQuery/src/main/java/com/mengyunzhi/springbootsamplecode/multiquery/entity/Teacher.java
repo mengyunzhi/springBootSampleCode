@@ -3,7 +3,6 @@ package com.mengyunzhi.springbootsamplecode.multiquery.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mengyunzhi.springbootsamplecode.multiquery.annotation.BeginQueryParam;
 import com.mengyunzhi.springbootsamplecode.multiquery.annotation.EndQueryParam;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
