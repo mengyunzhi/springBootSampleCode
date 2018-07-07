@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://127.0.0.1/flywayDemo?useUnicode=true&characterEncoding=utf-8
+#    设置数据初始化模式为：always
+    initialization-mode: always
+#    设置 ; 的重写符号
+    separator: //
