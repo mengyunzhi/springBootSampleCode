@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--启用debug模式后，将在`spring-boot 大LOG`上方打印中logBack的配置信息-->
+<configuration debug="false">
+    <!--引入application配置信息-->
+    <springProperty scope="context" name="logUrl" source="yunzhi.log.url"
+                    defaultValue="localhost"/>
+
+    <!--包含配置文件 org/springframework/boot/logging/logback/defaults.xml-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <!--定义变量LOG_FILE，值为${LO...}-->
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+
+    <!--包含配置文件，该配置文件中，定义了 控制台日志是按什么规则，什么形式输出的-->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <!--包含配置文件，该配置文件中，定义了 文件日志是按什么规则，什么形式输出的-->
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+    <!--引入第三方appender, 起名为http-->
+    <appender name="HTTP" class="ch.qos.logback.ext.loggly.LogglyAppender">
+        <!--请求的地址-->
+        <endpointUrl>${logUrl}</endpointUrl>
+        <!--定义过滤器-->
+        <filter class="com.mengyunzhi.sample.logback.Filter"/>
+        <!--定义输出格式JSON-->
+        <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+            <jsonFormatter
+                    class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                <prettyPrint>true</prettyPrint>
+            </jsonFormatter>
+            <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+        </layout>
+    </appender>
+
+    <!--定义日志等级-->
+    <root level="INFO">
+        <!--启用第一个appender为CONSOLE, 该名称定义于org/springframework/boot/logging/logback/console-appender.xml中-->
+        <appender-ref ref="CONSOLE" />
+
+        <!--启用第二个appender为FILE, 该名称定义于org/springframework/boot/logging/logback/file-appender.xml中-->
+        <appender-ref ref="FILE" />
+
+        <!--启用第三个appender为HTTP-->
+        <appender-ref ref="HTTP" />
+    </root>
+</configuration>
