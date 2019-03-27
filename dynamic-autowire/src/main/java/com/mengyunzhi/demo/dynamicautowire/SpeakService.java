@@ -1,11 +1,10 @@
 package com.mengyunzhi.demo.dynamicautowire;
 
+/**
+ * 说话
+ */
 public interface SpeakService {
     void sayHello();
-
-    static String getBeanName() {
-        return "DynamicServiceImpl";
-    }
 
     Byte getCode();
 }

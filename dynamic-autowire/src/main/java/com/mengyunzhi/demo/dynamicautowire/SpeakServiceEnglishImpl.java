@@ -2,6 +2,9 @@ package com.mengyunzhi.demo.dynamicautowire;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * 美国话
+ */
 @Component
 public class SpeakServiceEnglishImpl implements SpeakService {
     @Override

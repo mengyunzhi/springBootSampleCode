@@ -3,6 +3,9 @@ package com.mengyunzhi.demo.dynamicautowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 你好
+ */
 @Service
 public class SayHelloServiceImpl implements SayHelloService {
     private final
@@ -15,6 +18,6 @@ public class SayHelloServiceImpl implements SayHelloService {
 
     @Override
     public void sayHello() {
-        this.speakFactory.getDynamicService().sayHello();
+        this.speakFactory.getSpeakService().sayHello();
     }
 }

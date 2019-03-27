@@ -18,9 +18,14 @@ public class SayHelloServiceImplTest {
 
     @Test
     public void sayHello() {
+        // 默认说你好
         sayHelloService.sayHello();
+
+        // 将国家设置为美国，再说你好
         speakFactory.setCountryCode(CountryCode.USA);
         sayHelloService.sayHello();
+
+        // 将国家设置为中国，再说你好
         speakFactory.setCountryCode(CountryCode.CHINA);
         sayHelloService.sayHello();
     }

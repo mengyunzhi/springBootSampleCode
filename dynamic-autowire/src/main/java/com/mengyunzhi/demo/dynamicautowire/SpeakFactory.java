@@ -1,10 +1,11 @@
 package com.mengyunzhi.demo.dynamicautowire;
 
+/**
+ * 说话工厂
+ */
 public interface SpeakFactory {
 
     void setCountryCode(CountryCode countryCode);
 
-    void register(Byte code, SpeakService speakService);
-
-    SpeakService getDynamicService();
+    SpeakService getSpeakService();
 }
