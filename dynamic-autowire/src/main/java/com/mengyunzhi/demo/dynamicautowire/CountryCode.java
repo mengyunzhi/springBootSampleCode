@@ -5,7 +5,8 @@ package com.mengyunzhi.demo.dynamicautowire;
  */
 public enum CountryCode {
     CHINA((byte) 0, "中国"),
-    USA((byte) 1, "美国");
+    USA((byte) 1, "美国"),
+    GERMANY((byte) 2, "德国");
     private Byte code;
     private String name;
 
@@ -17,6 +18,7 @@ public enum CountryCode {
     public Byte getCode() {
         return code;
     }
+
     public String getName() {
         return name;
     }

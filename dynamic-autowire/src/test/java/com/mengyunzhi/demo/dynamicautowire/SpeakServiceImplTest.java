@@ -27,4 +27,23 @@ public class SpeakServiceImplTest {
         sayHelloFactory.setCountryCode(CountryCode.CHINA);
         speakService.sayHello();
     }
+
+
+    @Test
+    public void sayHello1() {
+        // 默认说你好
+        speakService.sayHello();
+
+        // 将国家设置为美国，再说你好
+        sayHelloFactory.setCountryCode(CountryCode.USA);
+        speakService.sayHello();
+
+        // 将国家设置为德国，再说你好
+        sayHelloFactory.setCountryCode(CountryCode.GERMANY);
+        speakService.sayHello();
+
+        // 将国家设置为中国，再说你好
+        sayHelloFactory.setCountryCode(CountryCode.CHINA);
+        speakService.sayHello();
+    }
 }
