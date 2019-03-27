@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * 美国话
  */
 @Component
-public class SpeakServiceEnglishImpl implements SpeakService {
+public class SayHelloServiceEnglishImpl implements SayHelloService {
     @Override
     public void sayHello() {
         System.out.println("hello");

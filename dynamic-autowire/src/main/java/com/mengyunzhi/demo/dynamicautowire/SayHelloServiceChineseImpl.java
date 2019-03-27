@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * 中国话
  */
 @Component
-public class SpeakServiceChineseImpl implements SpeakService {
+public class SayHelloServiceChineseImpl implements SayHelloService {
     @Override
     public void sayHello() {
         System.out.println("您好");

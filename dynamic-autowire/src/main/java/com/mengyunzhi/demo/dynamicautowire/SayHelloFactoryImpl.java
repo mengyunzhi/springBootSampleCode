@@ -11,11 +11,11 @@ import java.util.Map;
  * 说话工厂
  */
 @Service
-public class SpeakFactoryImpl implements SpeakFactory {
+public class SayHelloFactoryImpl implements SayHelloFactory {
     /**
      * BEAN列表
      */
-    private final Map<Byte, SpeakService> servicesByCode = new HashMap<>();
+    private final Map<Byte, SayHelloService> servicesByCode = new HashMap<>();
     /**
      * 国家代码
      */
@@ -32,8 +32,8 @@ public class SpeakFactoryImpl implements SpeakFactory {
      * @param speakServices spring获取到的所以实现了SpeakService的BEAN
      */
     @Autowired
-    public void init(List<SpeakService> speakServices) {
-        for (SpeakService speakService : speakServices) {
+    public void init(List<SayHelloService> speakServices) {
+        for (SayHelloService speakService : speakServices) {
             this.register(speakService.getCode(), speakService);
         }
     }
@@ -44,7 +44,7 @@ public class SpeakFactoryImpl implements SpeakFactory {
      * @param code         代码
      * @param speakService BEAN
      */
-    private void register(Byte code, SpeakService speakService) {
+    private void register(Byte code, SayHelloService speakService) {
         this.servicesByCode.put(code, speakService);
     }
 
@@ -54,7 +54,7 @@ public class SpeakFactoryImpl implements SpeakFactory {
      * @return 对应的SpeakService BEAN
      */
     @Override
-    public SpeakService getSpeakService() {
+    public SayHelloService getSpeakService() {
         return this.servicesByCode.get(this.countryCode.getCode());
     }
 }

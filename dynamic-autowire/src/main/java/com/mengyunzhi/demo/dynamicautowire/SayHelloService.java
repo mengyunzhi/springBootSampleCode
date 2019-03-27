@@ -1,8 +1,10 @@
 package com.mengyunzhi.demo.dynamicautowire;
 
 /**
- * 你好
+ * 说话
  */
 public interface SayHelloService {
     void sayHello();
+
+    Byte getCode();
 }
