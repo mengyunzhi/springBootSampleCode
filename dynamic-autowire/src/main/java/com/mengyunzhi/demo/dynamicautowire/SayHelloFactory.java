@@ -7,5 +7,5 @@ public interface SayHelloFactory {
 
     void setCountryCode(CountryCode countryCode);
 
-    SayHelloService getSpeakService();
+    SayHelloService getSayHelloService();
 }

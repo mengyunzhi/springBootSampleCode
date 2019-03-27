@@ -18,6 +18,6 @@ public class SpeakServiceImpl implements SpeakService {
 
     @Override
     public void sayHello() {
-        this.sayHelloFactory.getSpeakService().sayHello();
+        this.sayHelloFactory.getSayHelloService().sayHello();
     }
 }

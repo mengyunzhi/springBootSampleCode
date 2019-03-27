@@ -29,12 +29,12 @@ public class SayHelloFactoryImpl implements SayHelloFactory {
     /**
      * 初始化
      *
-     * @param speakServices spring获取到的所以实现了SpeakService的BEAN
+     * @param sayHelloServices spring获取到的所以实现了SpeakService的BEAN
      */
     @Autowired
-    public void init(List<SayHelloService> speakServices) {
-        for (SayHelloService speakService : speakServices) {
-            this.register(speakService.getCode(), speakService);
+    public void init(List<SayHelloService> sayHelloServices) {
+        for (SayHelloService sayHelloService : sayHelloServices) {
+            this.register(sayHelloService.getCode(), sayHelloService);
         }
     }
 
@@ -42,19 +42,19 @@ public class SayHelloFactoryImpl implements SayHelloFactory {
      * 注册Bean
      *
      * @param code         代码
-     * @param speakService BEAN
+     * @param sayHelloService BEAN
      */
-    private void register(Byte code, SayHelloService speakService) {
-        this.servicesByCode.put(code, speakService);
+    private void register(Byte code, SayHelloService sayHelloService) {
+        this.servicesByCode.put(code, sayHelloService);
     }
 
     /**
      * 获取BEAN
      *
-     * @return 对应的SpeakService BEAN
+     * @return 对应的SayHelloService BEAN
      */
     @Override
-    public SayHelloService getSpeakService() {
+    public SayHelloService getSayHelloService() {
         return this.servicesByCode.get(this.countryCode.getCode());
     }
 }
