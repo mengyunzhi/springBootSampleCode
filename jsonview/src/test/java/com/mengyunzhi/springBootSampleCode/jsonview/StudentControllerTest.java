@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
 @AutoConfigureMockMvc
-public class KlassControllerTest extends  JsonviewApplicationTests {
+public class StudentControllerTest extends JsonviewApplicationTests {
     @Autowired
     private KlassRepository klassRepository;
     @Autowired
@@ -29,17 +29,14 @@ public class KlassControllerTest extends  JsonviewApplicationTests {
         student.setKlass(klass);
         studentRepository.save(student);
 
-        klass.getStudents().add(student);
-        klassRepository.save(klass);
 
         String result = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/klass/" + klass.getId().toString())
+                MockMvcRequestBuilders.get("/student/" + student.getId().toString())
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andReturn().getResponse().getContentAsString();
 
-        Klass resultKlass = JSON.parseObject(result, Klass.class);
-        Assertions.assertThat(resultKlass.getName()).isEqualTo("测试班级");
-        Assertions.assertThat(resultKlass.getStudents().size()).isEqualTo(1);
-        Assertions.assertThat(resultKlass.getStudents().get(0).getName()).isEqualTo("测试学生");
+        Student resultStudent = JSON.parseObject(result, Student.class);
+        Assertions.assertThat(resultStudent.getName()).isEqualTo("测试学生");
+        Assertions.assertThat(resultStudent.getKlass().getName()).isEqualTo("测试班级");
     }
 }

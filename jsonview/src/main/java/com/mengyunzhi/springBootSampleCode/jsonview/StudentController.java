@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("klass")
-public class KlassController {
+@RequestMapping("student")
+public class StudentController {
     static abstract class Json {
-        interface getById extends Klass.Json.base, Klass.Json.students {}
+        interface getById extends Student.Json.base, Student.Json.klass {}
     }
 
-    @Autowired private KlassRepository klassRepository;
+    @Autowired private StudentRepository studentRepository;
 
     @GetMapping("{id}")
     @JsonView(Json.getById.class)
-    public Klass getById(@PathVariable  Long id) {
-        return klassRepository.findById(id).get();
+    public Student getById(@PathVariable  Long id) {
+        return studentRepository.findById(id).get();
     }
 }
