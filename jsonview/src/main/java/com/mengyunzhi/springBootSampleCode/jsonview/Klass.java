@@ -15,22 +15,21 @@ public class Klass {
         this.name = name;
     }
 
-    /**
-     * 定义JSON输出
-     */
-    static abstract class Json {
-        interface base {}  // 基本字段
-        interface students extends Student.Json.base {}// 对应students字段
-    }
+
+    interface base {
+    }  // 基本字段
+
+    interface students extends Student.base {
+    }// 对应students字段
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonView(Json.base.class)
+    @JsonView(base.class)
     private String name;
 
-    @JsonView(Json.students.class)
+    @JsonView(students.class)
     @OneToMany(mappedBy = "klass")
     private List<Student> students = new ArrayList<>();
 

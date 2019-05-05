@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class KlassController {
 
     // 这是关键！继承了两个interface,即显示这两个interface对应的字段。
-    interface getById extends Klass.Json.base, Klass.Json.students {
+    interface getById extends Klass.base, Klass.students {
     }
 
     @Autowired
