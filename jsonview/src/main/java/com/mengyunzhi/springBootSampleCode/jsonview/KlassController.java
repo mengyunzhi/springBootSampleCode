@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("klass")
 public class KlassController {
-    static abstract class Json {
-        // 这是关键！继承了两个interface,即显示这两个interface对应的字段。
-        interface getById extends Klass.Json.base, Klass.Json.students {}
+
+    // 这是关键！继承了两个interface,即显示这两个interface对应的字段。
+    interface getById extends Klass.Json.base, Klass.Json.students {
     }
 
-    @Autowired private KlassRepository klassRepository;
+    @Autowired
+    private KlassRepository klassRepository;
 
     @GetMapping("{id}")
-    @JsonView(Json.getById.class)
-    public Klass getById(@PathVariable  Long id) {
+    @JsonView(getById.class)
+    public Klass getById(@PathVariable Long id) {
         return klassRepository.findById(id).get();
     }
 }
