@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("klass")
 public class KlassController {
     static abstract class Json {
+        // 这是关键！继承了两个interface,即显示这两个interface对应的字段。
         interface getById extends Klass.Json.base, Klass.Json.students {}
     }
 
